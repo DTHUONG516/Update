@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quang Ninh City</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="main.js"></script>
+        <script src="https://kit.fontawesome.com/9e2020f946.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <!-- navbar header -->
+        <div class="navbar">
+            <div class="navbar-left">
+                <img src="/city.jpg" alt="">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about-resort-img">Resort</a></li>
+                <li><a href="#about-transportation-img">Transportation</a></li>
+                <li><a href="#about-facilities-img">Architecture</a></li>
+                <li><a href="#about-tour-img">Attraction</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </div>
+            <div class="navbar-right">
+               <div class="search">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search (e.g., Ho Chi Minh, Da Nang, Ha Noi)">
+                    <button id="search-btn" class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="sign-in" id="signInBtn" onclick="loginToggle()">Sign in</div>
+                <div class="join-us" onclick="signupToggle()">Join us</div>
+                <div class="user">
+                    <img src="https://www.gravatar.com/avatar/edba7a780125c6e32a506ba87245bcd3.jpg?s=80&d=mp&r=g" alt="" class="user-img">
+                    <span class="user-name">Loading...</span>
+
+                    <ul class="user-menu">
+                        <li class="user-items">
+                            <div class="user-setting" onclick="showMyAccount()">My Account</div>
+                        </li>
+                        <li class="user-items">
+                            <div class="user-setting">Help</div>
+                        </li>
+                        <li class="user-items">
+                            <a href="" class="user-setting" id="log-out">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- modal pop up -->
+        <div class="overlay" onclick="closeForms()"></div>
+        <div class="sign-up-form">
+            <div class="form">
+                <div class="close" onclick="signupToggle()">&times;</div>
+                <div class="text">
+                    <h1>Register Form</h1>
+                </div>
+                <form id="registerForm" action="#">
+                    <div class="row-form">
+                        <input id="userName" type="text" placeholder="User Name">
+                        <input id="fullName" type="text" placeholder="Full Name">   
+                    </div>
+                    <input id="email" type="email" placeholder="Email" autocomplete="username">
+                    <input id="password" type="password" placeholder="Password" autocomplete="new-password">
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password" autocomplete="new-password">
+                    <input id="registerSubmit" type="submit" value="Register" style="cursor: pointer;">
+                </form>       
+            </div>
+        </div>
+
+        <div class="login-form" id="loginFormContainer">
+            <div class="form">
+                <div class="close" onclick="loginToggle()">&times;</div>
+                <div class="text">
+                    <h1>Login Form</h1>
+                </div>
+                <form id="loginForm" action="#">
+                    <input id="loginUserName" type="text" placeholder="User Name" autocomplete="username">
+                    <input id="loginPassword" type="password" placeholder="Password" autocomplete="password">
+                    <div class="row-form">
+                        <input id="loginSubmit" type="submit" value="Login" style="cursor: pointer;">
+                        <a href="" class="forgotPassword" onclick="forgotPasswordToggle(event)">Forgot Password</a>
+                    </div>
+                    <div class="register-link">
+                        <p>Don't have an account?
+                            <a href="javascript:void(0);" onclick=" event.preventDefault(); toggleForm('.sign-up-form')">Sign up</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="my_account">
+            <div class="form">
+                <div class="close" onclick="accountToggle()">&times;</div>
+                <div class="text">
+                    <h1>Account Setting</h1>
+                </div>
+                <form id="accountForm" action="#">
+                    <div class="row-form">
+                        <input id="accountUserName" type="text" placeholder="New User Name">
+                        <input id="accountFullName" type="text" placeholder="New Full Name">   
+                    </div>
+                    <input id="accountEmail" type="email" placeholder="New Email" autocomplete="username">
+                    <input id="accountSubmit" type="submit" value="Change" style="cursor: pointer;">
+                </form>       
+            </div>
+        </div>
+
+        <div class="forgot-password-modal" id="forgotPasswordModal">
+            <div class="modal-content">
+                <div class="close" onclick="forgotPasswordToggle()">&times;</div>
+                <div class="text">
+                    <h1>Forgot Password</h1>
+                    <p>Type your new password</p>
+                </div>
+                <form action="#" id="forgotPasswordForm">
+                    <input id="Name" type="text" placeholder="User Name" autocomplete="username">
+                    <input id="currentPassword" type="password" placeholder="Current Password" autocomplete="current-password" required>
+                    <input id="newPassword" type="password" placeholder="New Password" autocomplete="new-password" required>
+                    <input id="resetSubmit" type="submit" value="Reset Password">
+                </form>
+            </div>
+        </div>
+        
+<!-- about city -->
+        <div id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="about-col-1">
+                        <img src="/HoChiMinh/tphcm.jpg" alt="">
+                    </div>
+                    <div class="about-col-2">
+                        <h1 class="sub-title">Quang Ninh</h1>
+                        <p>
+                            Quang Ninh is a coastal province in the Northeastern region of Vietnam.
+                            According to the economic development plan, Quang Ninh belongs to both the Northern Key Economic Zone and the Northern Coastal Region.
+                            This is the main coal mining province of Vietnam, with Ha Long Bay, a world heritage and natural wonder. 
+                            Quang Ninh is also one of the eight provinces planned by the Vietnamese Government to become centrally-governed cities.
+                        </p>
+        
+                        <div class="tab-titles">
+                            <p class="tab-links active-link" onclick="opentab('resort')">Resorts</p>
+                            <p class="tab-links" onclick="opentab('transportation')">Transportation</p>
+                            <p class="tab-links"onclick="opentab('architecture')">Architecture</p>
+                            <p class="tab-links"onclick="opentab('tour')">Tourist Attraction</p>
+                        </div>
+                        <!-- resort" -->
+                        <div class="tab-contents active-tab" id="resort">
+                            <ul>
+                                <li><span>
+                                    <i class="fa-solid fa-hotel"></i>
+                                    Wyndham Garden Sonasea Van Don
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Sonasea Vân Đồn Harbor City, Vân Đồn, Quảng Ninh 
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        As the first and only 5-star hotel in Van Don, Quang Ninh,
+                                     located on Bai Tu Long Bay with the longest and most beautiful coastline in the North,
+                                      Wyndham Garden Sonasea Van Don Hotel with its luxurious and modern space will be the perfect destination for a wonderful vacation
+                                     with high-class experiences and attentive service from a dedicated and professional staff.
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-dollar-sign"></i>
+                                        Price: from 2.645.503VND/night
+                                    </li>
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-hotel"></i>
+                                    The Yacht Hotel by DC
+                                    </span><br>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        No. 258 Bai Chay Street Ha Long City, Quang Ninh Province, Vietnam
+                                        <li>
+                                            <i class="fa-solid fa-book"></i>
+                                            Located in Ha Long, one of the most beautiful coastal cities in Vietnam, 
+                                            The Yacht by DC Hotel is a place where modern luxury meets true relaxation, 
+                                            taking you from the first enchanting impression of the room space to the complete happiness
+                                             when enjoying the amenities. Inspired by the beauty of Ha Long and built and managed by the city's own children, 
+                                             The Yacht by DC Hotel offers the perfect combination of exquisite service down to every detail and unique local identity with a fresh contemporary perspective
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-dollar-sign"></i>
+                                            Price: from 1.504.000 VND/night
+                                        </li>
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-hotel"></i>
+                                    Milash Boutique Hotel
+
+                                    </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    E554 Sun Plaza Grand World Bãi Cháy, Hạ Long, Việt Nam.
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        As the first and only boutique hotel on Tuan Chau Pearl Island, 
+                                        the gateway to Ha Long Bay, Paradise Suites offers the best quality of service and amenities
+                                         as certified by the leading travel organization TripAdvisor. 
+                                         Coming to the hotel, you will not only enjoy a relaxing and luxurious resort space 
+                                         but also experience a private beach, the most quintessential cuisine of the heritage area and countless interesting activities.
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-dollar-sign"></i>
+                                        Price: From 500.000 VND/night
+                                    </li>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- transportation -->
+                        <div class="tab-contents" id="transportation">
+                            <ul>
+                                <li><span>
+                                    <i class="fa-solid fa-road"></i>
+                                    Airway system
+                                </span><br>
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        Van Don International Airport is a civil-military airport located in Doan Ket Commune, Van Don District, Quang Ninh Province, Vietnam.
+                                         This airport also functions as a new backup airport for Noi Bai. 
+                                         The airport is about 60 km from Ha Long City and nearly 20 km from Cam Pha City, 
+                                         mainly serving Van Don and Ha Long Special Zones with a capacity of up to 10 million passengers/year.
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        Operating airlines include: Vietnam Airlines, Bamboo Airways, Donghai Airlines, Qingdao Airlines, VietJet Air.
+                                    </li>
+                                    <span></span>
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-train"></i>
+                                     Railway
+                                </span><br>
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        The railway is a railway connecting the capital Hanoi with the world's natural wonder Ha Long Bay, 
+                                        which is currently under construction.[1] The main railway is Vietnam's first high-speed railway. 
+                                        The route is designed with a passenger train speed of 120 km/h (the average speed of Vietnam's railways is currently 50 km/h), 
+                                        freight train speed of 80 km/h. /h . 
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        Previously, to go to Ha Long, people had to take the train from Yen Vien station to Kep station (Hanoi - Dong Dang Railway) and then from Kep to Ha Long station (Kep - Cai Lan Railway), the new railway line.
+                                         will reduce travel time from Hanoi to Ha Long.
+                                    </li>
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-anchor"></i>
+                                    waterway system
+                                </span><br>
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        Waterway tourism becomes one of the types of tourism, tourism products that create a difference for the City, contributing to diversifying the City's tourism products. 
+                                        Strive for the total number of waterway transport vehicles serving tourists by 2025 to reach 200 canoes, 100 ships, boats and yachts of all kinds.
+                                    </li>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--  Architecture -->
+                        <div class="tab-contents" id="architecture">
+                            <ul>
+                                <li><span>
+                                    <i class="fa-solid fa-house"></i>
+                                    Quang Ninh Provincial Museum
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Tran Quoc Nghien Street, Ha Long, Quang Ninh
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        The new building of the Quang Ninh Museum is a modern architectural work designed 
+                                        by architect Salvador Pérez Arroyo in partnership with the National Institute of Urban and Rural Planning.
+                                        It is a large box-shaped block, the exterior is covered by black tempered glass,
+                                         the architect was inspired by coal, a main industrial product of Quang Ninh province.
+                                          The museum is one of three blocks in the Complex, the remaining two blocks are the Library House 
+                                          and the Exhibition Workshop House.  
+                                        
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-house"></i>
+                                    Bai Chay Bridge
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Located on Highway 18, connecting two parts of Ha Long city, Hon Gai and Bai Chay, 
+                                    through Cua Luc Bay, where it flows into Ha Long Bay, in Quang Ninh province.
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        The purpose of this bridge solves the travel needs of Quang Ninh people, domestic and foreign tourists, 
+                                        and ends the decades-long operation of the Bai Chay ferry.
+                                         Not only meaningful in terms of traffic, Bai Chay Bridge marks new construction records in Vietnam and the world. 
+                                         With slim, modern architecture, Bai Chay Bridge brings a new and romantic architectural feature, contributing to the beauty of Ha Long Bay.
+                                    </li>
+                                </li>
+                                <li><span>
+                                    <i class="fa-solid fa-house"></i>
+                                    Quang Ninh Provincial Gate
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Ha Long - Noi Bai highway , Binh Duong, Dong Trieu, Quang Ninh
+                                    <li>
+                                        <i class="fa-solid fa-book"></i>
+                                        The architecture of the gate to welcome Quang Ninh province is a combination of two elements 
+                                        of the world natural heritage of Ha Long Bay and Yen Tu Buddhist Center
+                                         including lotus towers, ornamental lakes, artificial hills, and landscape traffic.
+                                    </li>
+                                </li>     
+                            </ul>
+                        </div>
+                        <!-- tour -->
+                        <div class="tab-contents" id="tour">
+                            <ul>
+                                <li><span>
+                                    <i class="fa-regular fa-star"></i>
+                                   Ha Long Bay 
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Quang Ninh, Viet Nam
+                                    <br>
+                                    <i class="fa-solid fa-book"></i>
+                                    . The UNESCO World Heritage Site covers an area of 434 km², 
+                                    including 775 islands, of which 411 have been named. 
+                                    This is home to many famous rocky islands, caves and beaches.
+                                </li>
+
+                                <li><span>
+                                    <i class="fa-regular fa-star"></i>
+                                    Tuan Chau Peninsula
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Ha Long city, Quang Ninh, Vietnam.
+                                    <br>
+                                    <i class="fa-solid fa-book"></i>
+                                    Possessing peaceful beauty, open air and being invested in the construction of an amusement park, 
+                                    the largest and most modern cruise ship port, Tuan Chau Quang Ninh island has become the most attractive destination
+                                     in the coastal city of Ha Long.
+                                    
+                                </li> 
+
+                                <li><span>
+                                    <i class="fa-regular fa-star"></i>
+                                    Co To Island
+                                </span><br>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Co To town, Quang Ninh province, Vietnam
+                                    <br>
+                                    <i class="fa-solid fa-book"></i>
+                                    Co To scored points in the hearts of many tourists because of the pristine natural landscape
+                                 and many famous tourist and tourist landmarks.
+                                </li>  
+                            </ul>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+<!-- resort img-->
+        <div id="about-resort-img">
+            <div class="container">
+                <h1 class="sub-title">Resort</h1>
+                <div class="service-list">
+                    <div class="service">
+                        <img src="/images/QuangNInh/Wyndham Garden Sonasea Van Don.jpg" alt="">
+                        <div class="layer">
+                            <h3>Wyndham Garden Sonasea Van Don</h3>
+                            <a href="https://wyndhamgarden-sonaseavandon.com/"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                3.0(2200) 😊
+                            </div>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5" class="star">&#9733;</label>
+                        
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4" class="star">&#9733;</label>
+                        
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3" class="star">&#9733;</label>
+                        
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2" class="star">&#9733;</label>
+                        
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1" class="star">&#9733;</label>
+
+                            </div>
+                            <button class="submit-rating">Gửi Đánh Giá</button>
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/The Yacht Hotel by DC.jpg" alt="">
+                        <div class="layer">
+                            <h3>The Yacht Hotel by DC</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(2200) 😊
+                            </div>
+                            <a href="https://yachtbydc.com/"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_1 "name="rating" value="5" />
+                                    <label for="star5_1" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_1" name="rating" value="4" />
+                                    <label for="star4_1" class="star">&#9733;</label>
+                                    <input type="radio" id="star3_1" name="rating1" value="3" />
+                                    <label for="star3_1" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_1" name="rating" value="2" />
+                                    <label for="star2_1" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_1" name="rating" value="1" />
+                                    <label for="star1_1" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/Milash Boutique Hotel.jpg" alt="">
+                        <div class="layer">
+                            <h3>Milash Boutique Hotel</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                5.0(2200) 😘
+                            </div>
+                            <a href="https://www.traveloka.com/vi-vn/hotel/vietnam/milash-boutique-hotel-9000003297100"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_2" name="rating" value="5" />
+                                    <label for="star5_2" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_2" name="rating" value="4" />
+                                    <label for="star4_2" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_2" name="rating" value="3" />
+                                    <label for="star3_2" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_2" name="rating" value="2" />
+                                    <label for="star2_2" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_2" name="rating" value="1" />
+                                    <label for="star1_2" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.booking.com/region/vn/quang-ninh.vi.html" class="btn">See more</a>
+            </div>
+        </div>
+<!-- transportation img -->
+        <div id="about-transportation-img">
+            <div class="container">
+                <h1 class="sub-title">Transportation</h1>
+                <div class="service-list">
+                    <div class="service">
+                        <img src="/images/QuangNInh/Vandon airway.jpg " alt="">
+                        <div class="layer">
+                            <h3>Airway system</h3>
+                            <a href="https://sungroup.com.vn/du-an/cang-hang-khong-quoc-te-van-don-777"><i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/railWay.jpg" alt="">
+                        <div class="layer">
+                            <h3>Railway system</h3>
+                            <a href="https://vnexpress.net/tuyen-duong-sat-lao-cai-ha-noi-quang-ninh-se-chay-tau-160-200-km-h-4733027.html"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/waterway.jpg " alt="">
+                        <div class="layer">
+                            <h3>Waterway system</h3>
+                            <a href="https://azgotravel.vn/tin-tuc/co-bao-nhieu-ben-tau-tai-ha-long"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.quangninh.gov.vn/Trang/ChiTietBVGioiThieu.aspx?bvid=449" class="btn">See more</a>
+            </div>
+        </div>
+<!-- Architecture img -->
+        <div id="about-facilities-img">
+            <div class="container">
+                <h1 class="sub-title">Architecture</h1>
+                <div class="service-list">
+                    <div class="service">
+                        <img src="/images/QuangNInh/Quang Ninh Provincial Museum.jpg" alt="">
+                        <div class="layer">
+                            <h3>Quang Ninh Provincial Museum</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                5.0(2200) 😘
+                            </div>
+                            <a href="https://www.quangninh.gov.vn/Sites/en-us/Trang/ChiTietTinTuc.aspx?nid=5856"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_3" name="rating" value="5" />
+                                    <label for="star5_3" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_3" name="rating" value="4" />
+                                    <label for="star4_3" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_3" name="rating" value="3" />
+                                    <label for="star3_3" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_3" name="rating" value="2" />
+                                    <label for="star2_3" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_3" name="rating" value="1" />
+                                    <label for="star1_3" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/Bai-Chay-bridge.jpg" alt="">
+                        <div class="layer">
+                            <h3>Bai Chay Bridge</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(45) 😊
+                            </div>
+                            <a href="https://www.wyndhamhalong.com/vn/blog/tim-hieu-ve-cau-bai-chay.html"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_4" name="rating" value="5" />
+                                    <label for="star5_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_4" name="rating" value="4" />
+                                    <label for="star4_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_4" name="rating" value="3" />
+                                    <label for="star3_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_4" name="rating" value="2" />
+                                    <label for="star2_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_4" name="rating" value="1" />
+                                    <label for="star1_4" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/Quang Ninh Provincial Gate.jpg" alt="">
+                        <div class="layer">
+                            <h3>Quang Ninh Provincial Gate</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(45) 😊
+                              </div>
+                            <a href="https://baoxaydung.com.vn/mot-cach-hieu-ve-du-an-cong-chao-tinh-quang-ninh-211316.html"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_4" name="rating" value="5" />
+                                    <label for="star5_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_4" name="rating" value="4" />
+                                    <label for="star4_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_4" name="rating" value="3" />
+                                    <label for="star3_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_4" name="rating" value="2" />
+                                    <label for="star2_4" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_4" name="rating" value="1" />
+                                    <label for="star1_4" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <a href="https://laodong.vn/du-lich/san-pham/quang-ninh-noi-tieng-voi-nhung-cong-trinh-kien-truc-dep-la-762649.html" class="btn">See more</a>
+            </div>
+        </div>
+<!-- tour img -->
+        <div id="about-tour-img">
+            <div class="container">
+                <h1 class="sub-title">Tourist Attraction</h1>
+                <div class="service-list">
+                    <div class="service">
+                        <img src="/images/QuangNInh/halongbay.jpg" alt="">
+                        <div class="layer">
+                            <h3> Ha Long Bay</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(45) 😊
+                            </div>
+                            <a href="https://www.dulichhalong.net/vinh-ha-long/"><i class="fa-solid fa-up-right-from-square"></i></a>
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_8" name="rating" value="5" />
+                                    <label for="star5_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_8" name="rating" value="4" />
+                                    <label for="star4_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_8" name="rating" value="3" />
+                                    <label for="star3_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_8" name="rating" value="2" />
+                                    <label for="star2_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_8" name="rating" value="1" />
+                                    <label for="star1_8" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/dao-tuan-chau.jpg" alt="">
+                        <div class="layer">
+                            <h3>Tuan Chau Peninsula</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(45) 😊
+                            </div>
+                            <a href="https://vinpearl.com/vi/dao-tuan-chau-quang-ninh-thien-duong-du-lich-cuc-hap-dan"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_8" name="rating" value="5" />
+                                    <label for="star5_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_8" name="rating" value="4" />
+                                    <label for="star4_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_8" name="rating" value="3" />
+                                    <label for="star3_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_8" name="rating" value="2" />
+                                    <label for="star2_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_8" name="rating" value="1" />
+                                    <label for="star1_8" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="service">
+                        <img src="/images/QuangNInh/Coto.jpg" alt="">
+                        <div class="layer">
+                            <h3>Co To Island</h3>
+                            <div class="popular__rating">
+                                <span><i class="ri-star-fill"></i></span>
+                                4.0(45) 😊
+                            </div>
+                            <a href="https://www.ivivu.com/blog/2022/06/du-lich-dao-co-to-quang-ninh-cam-nang-tu-a-den-z-update-thang-62022/"><i class="fa-solid fa-up-right-from-square"></i></a>  
+                            <div id="rating-container">
+                                <label for="rating">Đánh giá của bạn:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5_8" name="rating" value="5" />
+                                    <label for="star5_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star4_8" name="rating" value="4" />
+                                    <label for="star4_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star3_8" name="rating" value="3" />
+                                    <label for="star3_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star2_8" name="rating" value="2" />
+                                    <label for="star2_8" class="star">&#9733;</label>
+                            
+                                    <input type="radio" id="star1_8" name="rating" value="1" />
+                                    <label for="star1_8" class="star">&#9733;</label>
+
+                                </div>
+                                <button class="submit-rating">Gửi Đánh Giá</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <a href="https://vinpearl.com/vi/check-in-17-dia-diem-va-khu-du-lich-quang-ninh-hot-phai-ghe-tham" class="btn">See more</a>
+            </div>
+        </div>
+
+<!-- Rank -->
+<div class="ranking-container">
+    <h2>Architecture</h2>
+    <ul class="ranking-list" id="ranking-list-1">
+        <li class="ranking-item">
+            <span class="ranking-name">Landmark 81</span>
+            <span class="ranking-stars">⭐⭐⭐⭐⭐</span> <!-- 5 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item">
+            <span class="ranking-name">Bitexco Financial Tower</span>
+            <span class="ranking-stars">⭐⭐⭐⭐</span> <!-- 4 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item">
+            <span class="ranking-name">Empire City Tower</span>
+            <span class="ranking-stars">⭐⭐⭐⭐</span> <!-- 3 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <!-- Thêm các địa điểm khác -->
+    </ul>
+</div>
+    <!-- Rank resort-->
+<div class="ranking-container">
+    <h2>Tourist Attraction</h2>
+    <ul class="ranking-list" id="ranking-list-2">
+        <li class="ranking-item">
+            <span class="ranking-name">Independence Palace</span>
+            <span class="ranking-stars">⭐⭐⭐⭐⭐</span> <!-- 5 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item"> 
+            <span class="ranking-name">Immaculate Conception Cathedral Basilica</span>
+            <span class="ranking-stars">⭐⭐⭐⭐</span> <!-- 4 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item">
+            <span class="ranking-name">Ben Thanh Market</span>
+            <span class="ranking-stars">⭐⭐⭐⭐</span> <!-- 4 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <!-- Thêm các địa điểm khác -->
+    </ul>
+</div>
+        
+<!-- Rank Resort-->
+<div class="ranking-container">
+    <h2>Resort rankings</h2>
+    <ul class="ranking-list" id="ranking-list-3">
+
+        <li class="ranking-item">
+            <span class="ranking-name">Chloe Gallery</span>
+            <span class="ranking-stars">⭐⭐⭐⭐⭐</span> <!-- 5 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item">
+            <span class="ranking-name">Thao Dien Boutique Hotel</span>
+            <span class="ranking-stars">⭐⭐⭐⭐</span> <!-- 4 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <li class="ranking-item">
+            <span class="ranking-name">Villa Sông</span>
+            <span class="ranking-stars">⭐⭐⭐</span> <!-- 3 sao -->
+            <span class="ranking-reviews">(2200 reviews)</span>
+        </li>
+        <!-- Thêm các địa điểm khác -->
+    </ul>
+</div>
+<!-- Reviews-->
+<div class="section__container">
+    <div class="header">
+    <p>TESTIMONIALS</p>
+    <h1>What our clients say about us.</h1>
+    </div>
+    <div class="testimonials__grid">
+    <div class="card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <p>
+            It's unbelievable that there is a place as beautiful as Quang Ninh.
+             I traveled here for 5 days to explore Halong Bay, Yen Tu Pagoda, Co To Island,.. 
+             I want to go there again.
+        </p>
+        <hr />
+        <img src="/images/QuangNInh/person0.jpg" alt="user" />
+        <p class="name">Daniel, Brian</p>
+    </div>
+    <div class="card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <p>
+            I lived in Quang Ninh for 2 years for an export company.
+             I had a lot of good memories here with my Vietnamese boyfriend.
+             We visited Halong Bay. There are many floating islands here. 
+             And try many fresh dishes on board.
+        </p>
+        <hr />
+        <img src="/images/QuangNInh/person00.jpg" alt="user" />
+        <p class="name">Jessica   </p>
+    </div>
+    <div class="card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <p>
+        I will definitely come to Quang Ninh again. Everyone there is very friendly and cheerful.
+        </p>
+        <hr />
+        <img src="/images/QuangNInh/person000.jpg" alt="user" />
+        <p class="name">Laura</p>
+    </div>
+    </div>
+    <div class="footer">
+    <h4>No two homes are alike!</h4>
+    <p>
+        Our website will help you plan your trip to Vietnam.
+        If you have any questions, please do not hesitate to contact us.
+            See you in Vietnam.
+    </p>
+        GET A QUOTE
+    </div>
+</div>
+
+<!-- Contact -->
+        <div id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="contact-left">
+                        <h1 class="sub-title">Contact us</h1>
+                        <p><i class="fa-solid fa-envelope"></i>Fetel@gmail.com</p> 
+                        <p><i class="fa-solid fa-phone"></i>012345678   </p>
+                        <p></p>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/home"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-right">
+                        <form action="" name="submit-to-google-sheet">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="Message" id="" rows="6" placeholder="Your Message"></textarea>
+                            <button type="submit" class="btn btn2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- form pop up-->
+    <script>
+        function signupToggle() {
+            var popup = document.querySelector('.sign-up-form');
+            popup.classList.toggle('active');
+            var overlay = document.querySelector('.overlay');
+            overlay.classList.toggle('active');
+        }
+
+        function loginToggle() {
+            var popup = document.querySelector('.login-form');
+            popup.classList.toggle('active');
+            var overlay = document.querySelector('.overlay');
+            overlay.classList.toggle('active');
+        }
+
+        function accountToggle() {
+            var popup = document.querySelector('.my_account');
+            popup.classList.toggle('active');
+            var overlay = document.querySelector('.overlay');
+            overlay.classList.toggle('active');
+        }
+        function closeForms() {
+        ['.sign-up-form', '.login-form', '.overlay'].forEach(selector => {
+            document.querySelector(selector).classList.remove('active');
+        });
+        }
+
+        function closeLogInForm() {
+            document.querySelector('.login-form').classList.remove('active');
+            document.querySelector('.overlay').classList.remove('active');
+        }
+
+        function toggleForm(formClass) {
+            var form = document.querySelector(formClass);
+            var overlay = document.querySelector('.overlay');
+            overlay.classList.toggle('active');
+            form.classList.toggle('active');
+            closeLogInForm();
+            if (form.classList.contains('active')) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+    </script>
+<!-- about city -->
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            // Hide information of tab
+            for(tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            // Hide information of tab
+
+            // Show information
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab")
+        }
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzWc4vGnHB6FnB4R3o6BC_DORamaspZWOMtO2qhBl5kBOvkCSMz1p8GA68iZv5pe3Y1Lw/exec';
+        const form = document.forms['submit-to-google-sheet'];
+
+        form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => response.json())
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+    </body>
+</html>
