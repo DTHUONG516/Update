@@ -125,8 +125,8 @@
     document.getElementById('markAsVisitedBtn').addEventListener('click', function() {
         // Lấy ngày giờ hiện tại
         const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString(); // Định dạng ngày giờ
-
+        const formattedDate = currentDate.toISOString();  // Định dạng ngày giờ ISO 8601 (chính xác cho Instant)
+        
         // Hiển thị ngày giờ truy cập
         document.getElementById('visitDate').style.display = 'block';
         document.getElementById('dateValue').textContent = formattedDate;
@@ -134,27 +134,36 @@
         // Hiển thị phần đánh giá sao và bình luận
         document.getElementById('ratingSection').style.display = 'block';
 
-        // Gửi yêu cầu mark as visited lên API backend
-        const userId = 1; // Ví dụ: ID của người dùng
-        const serviceId = 1; // Ví dụ: ID của dịch vụ
+        // Gửi yêu cầu "Mark as Visited" lên API backend
+        const userId = 1; // Ví dụ: ID của người dùng (thay bằng giá trị thực tế từ client)
+        const serviceId = 1; // Ví dụ: ID của dịch vụ (thay bằng giá trị thực tế từ client)
 
-        fetch(`/api/visits/`, {
+        // Tạo đối tượng gửi lên API
+        const visitData = {
+            userId: userId,
+            serviceId: serviceId,
+            visitDate: formattedDate  // Thêm trường visitDate nếu cần
+        };
+
+        // Gửi yêu cầu POST đến API backend
+        fetch(`/api/visits`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                userId: userId,
-                serviceId: serviceId,
-                visitDate: formattedDate // Gửi ngày giờ truy cập lên API
-            })
+            body: JSON.stringify(visitData)
         })
         .then(response => response.json())
         .then(data => {
-            alert(data.message); // Hiển thị thông báo từ API
+            if (data.success) {
+                alert("Thông tin đã được lưu thành công!"); // Hiển thị thông báo thành công từ API
+            } else {
+                alert("Đã xảy ra lỗi: " + data.message);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
+            alert("Đã xảy ra lỗi khi lưu thông tin.");
         });
     });
 
