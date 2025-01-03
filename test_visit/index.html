@@ -1,184 +1,52 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark as Visited</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        .rating {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .rating i {
-            color: #FFD700;
-            font-size: 30px;
-            margin: 0 5px;
-        }
-        .rating i.disabled {
-            color: #ccc;
-        }
-        .comment-box {
-            width: 100%;
-            height: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        .submit-btn {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .submit-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+<div id="about-resort-img">
+    <div class="container">
+        <h1 class="sub-title">Resort</h1>
+        <div class="service-list">
+            <div class="service" data-service-id="456">
+                <img src="/HoChiMinh/villa.jpg" alt="Villa Sông">
+                <div class="layer">
+                    <h3>Villa Sông</h3>
+                    <a href="https://villasong.com/"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    <div class="popular__rating">
+                        <span><i class="ri-star-fill"></i></span>
+                        3.0(2200) 😊
+                    </div>
 
-<div class="container">
-    <h2>Mark as Visited</h2>
+                    <!-- Add Mark as Visited button here -->
+                    <button class="mark-visited-btn">Mark as Visited</button>
 
-    <!-- Nút Mark as Visited -->
-    <button class="btn" id="markAsVisitedBtn">Mark as Visited</button>
-
-    <!-- Hiển thị ngày giờ nhấn nút -->
-    <div id="visitDate" style="display: none;">
-        <p><strong>Ngày giờ truy cập: </strong><span id="dateValue"></span></p>
-    </div>
-
-    <!-- Đánh giá sao -->
-    <div id="ratingSection" style="display: none;">
-        <h3>Đánh giá của bạn</h3>
-        <div class="rating">
-            <i class="fas fa-star" data-value="1"></i>
-            <i class="fas fa-star" data-value="2"></i>
-            <i class="fas fa-star" data-value="3"></i>
-            <i class="fas fa-star" data-value="4"></i>
-            <i class="fas fa-star" data-value="5"></i>
+                    <!-- Display visit time once the button is clicked -->
+                    <div id="visitInfo" style="display: none; margin-top: 10px;">
+                        <p><strong>Service Visited At:</strong> <span id="visitDateTime"></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Phần nhập bình luận -->
-        <textarea class="comment-box" id="comment" placeholder="Viết bình luận của bạn..." required></textarea>
-
-        <!-- Nút gửi đánh giá -->
-        <button class="submit-btn" id="submitReviewBtn">Gửi Đánh Giá</button>
-         <!-- Thông báo lỗi -->
-         <p id="error-message" class="error" style="display: none;">Vui lòng chọn số sao và nhập bình luận.</p>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    // Đánh giá sao
-    let selectedRating = 0;
-    const stars = document.querySelectorAll('.rating i');
-    
-    stars.forEach(star => {
-        star.addEventListener('click', function() {
-            selectedRating = this.getAttribute('data-value');
-            updateStarRating(selectedRating);
-        });
-    });
+    // Function to handle marking a service as visited
+    document.querySelector('.mark-visited-btn').addEventListener('click', function() {
+        const serviceId = document.querySelector('.service').getAttribute('data-service-id');  // Get the service ID from the data attribute
 
-    function updateStarRating(rating) {
-        stars.forEach(star => {
-            if (star.getAttribute('data-value') <= rating) {
-                star.classList.remove('disabled');
-            } else {
-                star.classList.add('disabled');
-            }
-        });
-    }
+        // Get the current date and time
+        const currentDateTime = new Date().toLocaleString();
 
-    // Xử lý nút "Mark as Visited"
-    document.getElementById('markAsVisitedBtn').addEventListener('click', function() {
-        // Lấy ngày giờ hiện tại
-        const currentDate = new Date();
-        const formattedDate = currentDate.toISOString();  // Định dạng ngày giờ ISO 8601 (chính xác cho Instant)
-        
-        // Hiển thị ngày giờ truy cập
-        document.getElementById('visitDate').style.display = 'block';
-        document.getElementById('dateValue').textContent = formattedDate;
+        // Show the current date and time on the page
+        document.getElementById('visitDateTime').textContent = currentDateTime;
+        document.getElementById('visitInfo').style.display = 'block';
 
-        // Hiển thị phần đánh giá sao và bình luận
-        document.getElementById('ratingSection').style.display = 'block';
-
-        // Gửi yêu cầu "Mark as Visited" lên API backend
-        const userId = 1; // Ví dụ: ID của người dùng (thay bằng giá trị thực tế từ client)
-        const serviceId = 1; // Ví dụ: ID của dịch vụ (thay bằng giá trị thực tế từ client)
-
-        // Tạo đối tượng gửi lên API
-        const visitData = {
-            userId: userId,
-            serviceId: serviceId,
-            visitDate: formattedDate  // Thêm trường visitDate nếu cần
-        };
-
-        // Gửi yêu cầu POST đến API backend
-        fetch(`/api/visits`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(visitData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Thông tin đã được lưu thành công!"); // Hiển thị thông báo thành công từ API
-            } else {
-                alert("Đã xảy ra lỗi: " + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Đã xảy ra lỗi khi lưu thông tin.");
-        });
-    });
-
-    // Gửi đánh giá
-    document.getElementById('submitReviewBtn').addEventListener('click', function() {
-        const comment = document.getElementById('comment').value;
-        if (selectedRating > 0 && comment.trim() !== "") {
-            alert(`Đánh giá: ${selectedRating} sao\nBình luận: ${comment}`);
-            // Gửi dữ liệu đánh giá lên backend (API) ở đây nếu cần
-            // Ví dụ: fetch('/api/submit-review', { method: 'POST', body: JSON.stringify({ rating: selectedRating, comment: comment }) });
-        } else {
-            alert("Vui lòng chọn số sao và nhập bình luận.");
-        }
+        // Call the API to add the visit to the service
+        axios.post(`/api/services/${serviceId}/visit`)
+            .then(response => {
+                alert("Service marked as visited successfully!");
+                console.log(response.data); // Handle the response if needed
+            })
+            .catch(error => {
+                console.error("There was an error marking the service as visited:", error);
+                alert("Failed to mark service as visited.");
+            });
     });
 </script>
-
-</body>
-</html>
